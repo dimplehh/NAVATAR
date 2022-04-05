@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+//import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+//import Ionicons from 'react-native-vector-icons/Ionicons';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
+      <Text>Home</Text>
     </View>
   );
 }
@@ -28,30 +29,17 @@ function MypageScreen() {
   );
 }
 
-const Tab = createBottomTabNavigator();
+//const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
 <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="옷장"
-        tabBarOptions={{
-          activeBackgroundColor:'#dcafff',
-          activeTintColor:'blue',
-          inactiveTintColor:'#fff',
-          style:{
-            backgroundColor:'#dcafff'
-          }
-        }}
-        screenOptions={({ route }) => ({
-          tabBarActiveTintColor: 'purple',
-          tabBarInactiveTintColor: 'gray'
-        })}
-      >
-        <Tab.Screen name="옷장" component={HomeScreen} />
-        <Tab.Screen name="AR피팅룸" component={SettingsScreen} />
-        <Tab.Screen name="마이페이지" component={MypageScreen} />
-      </Tab.Navigator>
+  <Drawer.Navigator initialRouteName="Home">
+    <Drawer.Screen name="Home" component={HomeScreen}/>
+    <Drawer.Screen name="Setting" component={SettingsScreen}/>
+    <Drawer.Screen name="Mypage" component={MypageScreen}/>
+  </Drawer.Navigator>
     </NavigationContainer>
   );
 }
